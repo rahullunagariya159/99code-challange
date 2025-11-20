@@ -1,0 +1,144 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-lg);
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  animation: fadeInDown 0.6s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--text-primary);
+  filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: var(--spacing-sm);
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-footer {
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  animation: fadeIn 0.6s ease 0.4s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: var(--spacing-md);
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 0.875rem;
+  }
+
+  .app-header {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .app-footer {
+    margin-top: var(--spacing-xl);
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: var(--spacing-sm);
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+  }
+}
+

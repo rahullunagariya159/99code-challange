@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sum to N - Code Challenge</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 800px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 2em;
+      }
+
+      .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 0.95em;
+      }
+
+      .input-section {
+        margin-bottom: 30px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555;
+        font-weight: 600;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        transition: border-color 0.3s;
+      }
+
+      input[type="number"]:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .results {
+        display: grid;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .result-card {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 20px;
+        border-left: 4px solid #667eea;
+      }
+
+      .result-card h3 {
+        color: #333;
+        margin-bottom: 8px;
+        font-size: 1.1em;
+      }
+
+      .result-card .method {
+        color: #666;
+        font-size: 0.9em;
+        margin-bottom: 12px;
+      }
+
+      .result-card .answer {
+        font-size: 2em;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      .complexity {
+        margin-top: 10px;
+        font-size: 0.85em;
+        color: #888;
+      }
+
+      .btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        width: 100%;
+        font-weight: 600;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 25px;
+        }
+
+        h1 {
+          font-size: 1.5em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sum to N Calculator</h1>
+      <p class="subtitle">
+        Three different approaches to calculate the sum from 1 to n
+      </p>
+
+      <div class="input-section">
+        <label for="numberInput">Enter a number (n):</label>
+        <input type="number" id="numberInput" placeholder="e.g., 5" value="5" />
+        <br /><br />
+        <button class="btn" onclick="calculateSums()">Calculate Sums</button>
+      </div>
+
+      <div class="results" id="results"></div>
+    </div>
+
+    <script>
+      // Approach A: Iterative method using a for loop
+      var sum_to_n_a = function (n) {
+        let sum = 0;
+        for (let i = 1; i <= n; i++) {
+          sum += i;
+        }
+        return sum;
+      };
+
+      // Approach B: Mathematical formula
+      var sum_to_n_b = function (n) {
+        return (n * (n + 1)) / 2;
+      };
+
+      // Approach C: Recursive method
+      var sum_to_n_c = function (n) {
+        if (n <= 0) return 0;
+        if (n === 1) return 1;
+        return n + sum_to_n_c(n - 1);
+      };
+
+      function calculateSums() {
+        const n = parseInt(document.getElementById("numberInput").value);
+
+        if (isNaN(n)) {
+          alert("Please enter a valid number");
+          return;
+        }
+
+        const resultA = sum_to_n_a(n);
+        const resultB = sum_to_n_b(n);
+        const resultC = sum_to_n_c(n);
+
+        const resultsHTML = `
+                <div class="result-card">
+                    <h3>Approach A: Iterative</h3>
+                    <p class="method">Using a for loop to accumulate the sum</p>
+                    <div class="answer">${resultA}</div>
+                    <div class="complexity">Time: O(n) | Space: O(1)</div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Approach B: Mathematical Formula</h3>
+                    <p class="method">Using formula: n × (n + 1) / 2</p>
+                    <div class="answer">${resultB}</div>
+                    <div class="complexity">Time: O(1) | Space: O(1) ⚡ Most Efficient</div>
+                </div>
+
+                <div class="result-card">
+                    <h3>Approach C: Recursive</h3>
+                    <p class="method">Recursive approach: sum(n) = n + sum(n-1)</p>
+                    <div class="answer">${resultC}</div>
+                    <div class="complexity">Time: O(n) | Space: O(n)</div>
+                </div>
+            `;
+
+        document.getElementById("results").innerHTML = resultsHTML;
+      }
+
+      // Calculate on page load
+      calculateSums();
+    </script>
+  </body>
+</html>
